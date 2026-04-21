@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MetaBows</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
+
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    /* VIDEO */
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* OVERLAY */
+    .overlay {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.65);
+      z-index: -1;
+    }
+
+    /* FIXED CENTERING (NO GLITCH) */
+    .wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .content {
+      max-width: 700px;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 64px;
+      letter-spacing: 4px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      opacity: 0.85;
+      letter-spacing: 1px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      margin-top: 20px;
+      padding: 14px 32px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .connect {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: white;
+    }
+
+    .connect:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: white;
+    }
+
+    .mint {
+      background: white;
+      color: black;
+      font-weight: 600;
+      border: none;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    .mint:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 30px rgba(255,255,255,0.4);
+    }
+
+    .info {
+      margin-top: 30px;
+      font-size: 12px;
+      opacity: 0.6;
+      letter-spacing: 2px;
+    }
+
+    .highlight {
+      font-weight: 600;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- VIDEO -->
+  <video autoplay muted loop>
+    <source src="bg.mp4" type="video/mp4">
+  </video>
+
+  <!-- OVERLAY -->
+  <div class="overlay"></div>
+
+  <!-- CONTENT -->
+  <div class="wrapper">
+    <div class="content">
+
+      <h1>METABOWS</h1>
+
+      <p>
+        <span class="highlight">2,222 IDENTITIES. NO DUPLICATES.</span><br><br>
+        META BOWS ARE BUILT FOR OWNERSHIP — NOT OBSERVERS.<br>
+        LIMITED SUPPLY. EARLY ACCESS. NOTHING REPEATS.
+      </p>
+
+      <br>
+
+      <button id="connectBtn" class="btn connect">CONNECT WALLET</button>
+      <br>
+     <button id="mintBtn" class="btn mint">MINT — 0.0013 ETH</button>
+
+      <div class="info">
+        SUPPLY: 2222 • NETWORK: BASE / ETHEREUM
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let signer;
+    let contract;
+
+    const contractAddress = "0x1498eaAbAbd283a024388314f972ca8d3e243268";
+
+    const abi = [
+      "function mintPublic(uint256 quantity) public payable"
+    ];
+
+    document.getElementById("connectBtn").onclick = async () => {
+      if (!window.ethereum) {
+        alert("Install MetaMask");
+        return;
+      }
+
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      signer = await provider.getSigner();
+      contract = new ethers.Contract(contractAddress, abi, signer);
+      alert("Wallet Connected");
+    };
+
+    document.getElementById("mintBtn").onclick = async () => {
+      if (!contract) {
+        alert("Connect wallet first");
+        return;
+      }
+
+      try {
+        const tx = await contract.mintPublic(1, {
+          value: ethers.parseEther("0.001")
+        });
+
+        alert("Transaction sent");
+
+        await tx.wait();
+
+        alert("NFT Minted");
+      } catch (err) {
+        alert("Mint failed");
+      }
+    };
+  </script>
+
+</body>
+</html>
