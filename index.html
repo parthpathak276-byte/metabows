@@ -35,7 +35,42 @@
       z-index: -1;
     }
 
-    /* FIXED CENTERING (NO GLITCH) */
+    /* FLOATING BOWS */
+    .bows img {
+      position: fixed;
+      width: 60px;
+      opacity: 0.12;
+      animation: floatUp 12s linear infinite;
+      z-index: -1;
+    }
+
+    .bows img:nth-child(1) {
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .bows img:nth-child(2) {
+      left: 50%;
+      animation-delay: 4s;
+    }
+
+    .bows img:nth-child(3) {
+      left: 80%;
+      animation-delay: 8s;
+    }
+
+    @keyframes floatUp {
+      0% {
+        top: 100%;
+        transform: rotate(0deg);
+      }
+      100% {
+        top: -10%;
+        transform: rotate(180deg);
+      }
+    }
+
+    /* CENTER */
     .wrapper {
       min-height: 100vh;
       display: flex;
@@ -46,6 +81,22 @@
 
     .content {
       max-width: 700px;
+    }
+
+    /* LOGO */
+    .logo {
+      width: 110px;
+      margin-bottom: 20px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+      }
+      to {
+        filter: drop-shadow(0 0 25px rgba(255,255,255,0.8));
+      }
     }
 
     h1 {
@@ -108,15 +159,34 @@
       font-weight: 600;
     }
 
+    /* MOBILE OPTIMIZATION */
+    @media (max-width: 768px) {
+      .bows img {
+        width: 40px;
+        opacity: 0.08;
+      }
+
+      .logo {
+        width: 90px;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
   <!-- VIDEO -->
-  <video autoplay muted loop>
+  <video autoplay muted loop playsinline>
     <source src="bg.mp4" type="video/mp4">
   </video>
+
+  <!-- FLOATING BOWS -->
+  <div class="bows">
+    <img src="bow1.png">
+    <img src="bow2.png">
+    <img src="bow3.png">
+  </div>
 
   <!-- OVERLAY -->
   <div class="overlay"></div>
@@ -124,6 +194,9 @@
   <!-- CONTENT -->
   <div class="wrapper">
     <div class="content">
+
+      <!-- LOGO -->
+      <img src="logo.png" class="logo">
 
       <h1>METABOWS</h1>
 
@@ -137,7 +210,7 @@
 
       <button id="connectBtn" class="btn connect">CONNECT WALLET</button>
       <br>
-     <button id="mintBtn" class="btn mint">MINT — 0.0013 ETH</button>
+      <button id="mintBtn" class="btn mint">MINT — 0.0013 ETH</button>
 
       <div class="info">
         SUPPLY: 2222 • NETWORK: BASE / ETHEREUM
@@ -177,13 +250,11 @@
 
       try {
         const tx = await contract.mintPublic(1, {
-          value: ethers.parseEther("0.001")
+          value: ethers.parseEther("0.0013")
         });
 
         alert("Transaction sent");
-
         await tx.wait();
-
         alert("NFT Minted");
       } catch (err) {
         alert("Mint failed");
