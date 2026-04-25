@@ -8,13 +8,13 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
       background: black;
       color: white;
+      font-family: 'Inter', sans-serif;
       overflow-x: hidden;
     }
 
-    /* HERO VIDEO */
+    /* HERO */
     .hero {
       height: 100vh;
       position: relative;
@@ -27,93 +27,137 @@
       object-fit: cover;
     }
 
-    .hero-overlay {
+    .overlay {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.65);
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       flex-direction: column;
     }
 
-    h1 {
+    /* GLITCH TITLE */
+    .title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 70px;
+      font-size: 80px;
       letter-spacing: 6px;
-      margin: 0;
+      position: relative;
+      color: white;
+    }
+
+    .title::before,
+    .title::after {
+      content: "METABOWS";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .title::before {
+      color: #00fff2;
+      animation: glitch 2s infinite;
+    }
+
+    .title::after {
+      color: #ff00c8;
+      animation: glitch 2s infinite reverse;
+    }
+
+    @keyframes glitch {
+      0% { clip-path: inset(0 0 90% 0); }
+      50% { clip-path: inset(10% 0 40% 0); }
+      100% { clip-path: inset(80% 0 5% 0); }
     }
 
     .tagline {
-      margin-top: 10px;
+      margin-top: 15px;
+      font-size: 14px;
       letter-spacing: 3px;
       opacity: 0.7;
-      font-size: 14px;
     }
 
     /* SECTION */
     section {
-      padding: 100px 20px;
+      padding: 120px 20px;
       max-width: 900px;
       margin: auto;
       text-align: center;
     }
 
-    .story-box {
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 40px;
-      backdrop-filter: blur(10px);
-    }
-
-    .story-box p {
-      line-height: 1.7;
-      font-size: 15px;
+    .story {
+      font-size: 16px;
+      line-height: 1.8;
       opacity: 0.85;
     }
 
-    /* BOWS DISPLAY */
+    .highlight {
+      background: linear-gradient(90deg, #00fff2, #ff00c8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+    }
+
+    /* BOWS — PREMIUM LAYOUT */
     .bows {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
+      position: relative;
+      height: 500px;
+      margin-top: 80px;
     }
 
     .bows img {
+      position: absolute;
       width: 220px;
-      transition: 0.4s ease;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
+      transition: 0.5s;
+      filter: drop-shadow(0 0 20px rgba(255,255,255,0.2));
+    }
+
+    .bows img:nth-child(1) {
+      left: 10%;
+      top: 20%;
+      transform: rotate(-8deg);
+    }
+
+    .bows img:nth-child(2) {
+      left: 40%;
+      top: 0%;
+      transform: scale(1.2);
+    }
+
+    .bows img:nth-child(3) {
+      right: 10%;
+      top: 25%;
+      transform: rotate(8deg);
     }
 
     .bows img:hover {
-      transform: scale(1.08) rotate(1deg);
-      filter: drop-shadow(0 0 25px rgba(255,255,255,0.5));
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 40px rgba(255,255,255,0.6));
     }
 
     /* FOUNDER */
     .founder {
-      border-top: 1px solid rgba(255,255,255,0.2);
-      padding-top: 60px;
+      margin-top: 100px;
+      font-family: monospace;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      border-left: 2px solid rgba(255,255,255,0.3);
+      padding-left: 20px;
     }
 
     .founder h2 {
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 3px;
+      font-family: 'Orbitron';
+      letter-spacing: 2px;
     }
 
     .founder p {
-      font-size: 14px;
       opacity: 0.75;
+      font-size: 14px;
       line-height: 1.6;
-    }
-
-    /* GLOW LINE */
-    .line {
-      width: 80px;
-      height: 2px;
-      margin: 20px auto;
-      background: linear-gradient(90deg, transparent, white, transparent);
     }
 
   </style>
@@ -127,30 +171,25 @@
       <source src="bg.mp4" type="video/mp4">
     </video>
 
-    <div class="hero-overlay">
-      <h1>METABOWS</h1>
-      <div class="tagline">IDENTITY IS A CHOICE</div>
+    <div class="overlay">
+      <div class="title">METABOWS</div>
+      <div class="tagline">IDENTITY IS A CONSTRUCT</div>
     </div>
   </div>
 
   <!-- STORY -->
   <section>
-    <div class="story-box">
-      <p>
-        MetaBows is not a collection — it’s a system of identities.<br><br>
-        2,222 entities generated from fractured realities, each carrying a distinct visual code and presence.<br><br>
-        No duplicates. No repetition. No narrative imposed.<br><br>
-        You don’t follow the story — you become it.
-      </p>
-    </div>
+    <p class="story">
+      <span class="highlight">2,222 IDENTITIES.</span><br><br>
+      MetaBows exists at the edge of form and abstraction.<br>
+      Each entity is a distortion of identity — precise, deliberate, irreversible.<br><br>
+      No roadmap. No noise.<br>
+      Just presence.
+    </p>
   </section>
 
   <!-- BOWS -->
   <section>
-    <div class="line"></div>
-    <h1 style="font-size:40px;">FEATURED</h1>
-    <div class="line"></div>
-
     <div class="bows">
       <img src="bow1.png">
       <img src="bow2.png">
@@ -160,16 +199,16 @@
 
   <!-- FOUNDER -->
   <section class="founder">
-    <div class="line"></div>
-    <h2>FOUNDER — FLUX</h2>
-    <div class="line"></div>
-
+    <h2>FLUX</h2>
     <p>
-      Known only as Flux, the creator behind MetaBows operates outside traditional identity frameworks.<br><br>
-      Origin unknown. Presence deliberate.<br><br>
-      Built at the intersection of design, code, and controlled chaos — MetaBows is a reflection of alternate selves, not avatars.<br><br>
-      Flux doesn’t build collections.<br>
-      Flux builds systems.
+      // identity: unknown<br>
+      // origin: fragmented<br><br>
+
+      built outside convention.<br>
+      no attachment to form.<br><br>
+
+      metabows is not released.<br>
+      it emerges.
     </p>
   </section>
 
