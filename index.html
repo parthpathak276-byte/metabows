@@ -15,7 +15,7 @@
       overflow-x: hidden;
     }
 
-    /* VIDEO FIX */
+    /* HERO */
     .hero {
       position: relative;
       height: 100vh;
@@ -29,8 +29,6 @@
       left: 50%;
       min-width: 100%;
       min-height: 100%;
-      width: auto;
-      height: auto;
       transform: translate(-50%, -50%);
       object-fit: cover;
     }
@@ -54,13 +52,13 @@
       -webkit-text-fill-color: transparent;
     }
 
+    /* MAIN */
     .main {
       padding: 80px 20px;
       max-width: 900px;
       margin: auto;
     }
 
-    /* PREMIUM DESCRIPTION */
     .description {
       font-size: 17px;
       line-height: 1.9;
@@ -68,7 +66,7 @@
       letter-spacing: 0.4px;
     }
 
-    /* BUTTONS */
+    /* BUTTON */
     .cta {
       margin-top: 50px;
       padding: 14px 36px;
@@ -123,8 +121,8 @@
 
 <body>
 
-<!-- BACKGROUND MUSIC -->
-<audio autoplay loop>
+<!-- AUDIO (no autoplay, triggered by interaction) -->
+<audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -180,6 +178,7 @@ Inspired by alternate realities, every Meta-Bow represents a version of you that
 <script>
 const CID = "QmcZCK1QCt677ogSN28kChaJ4dt1jPQJvejbL1MrcRTXz6";
 
+/* QUIZ */
 function startQuiz() {
   document.getElementById("quiz").style.display = "block";
 }
@@ -218,6 +217,18 @@ function showNFTs() {
     container.appendChild(img);
   }
 }
+
+/* AUDIO FIX (NO BUTTON) */
+const music = document.getElementById("bgMusic");
+
+function enableAudio() {
+  music.play().catch(() => {});
+  document.removeEventListener("click", enableAudio);
+  document.removeEventListener("scroll", enableAudio);
+}
+
+document.addEventListener("click", enableAudio);
+document.addEventListener("scroll", enableAudio);
 </script>
 
 </body>
