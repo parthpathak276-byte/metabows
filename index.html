@@ -14,23 +14,10 @@
       overflow-x: hidden;
     }
 
-    /* GRAIN OVERLAY (HIGH-END FEEL) */
-    body::after {
-      content: "";
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: url('https://grainy-gradients.vercel.app/noise.svg');
-      opacity: 0.08;
-      pointer-events: none;
-      z-index: 10;
-    }
-
     /* HERO */
     .hero {
       height: 100vh;
       position: relative;
-      overflow: hidden;
     }
 
     .hero video {
@@ -38,21 +25,19 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.1);
     }
 
     .overlay {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.65);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6), black);
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
     }
 
-    /* TITLE */
     .title {
       font-family: 'Orbitron';
       font-size: 80px;
@@ -60,12 +45,6 @@
       background: linear-gradient(90deg, #00fff2, #ff00c8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 10px #00fff2); }
-      to { filter: drop-shadow(0 0 25px #ff00c8); }
     }
 
     .tagline {
@@ -75,102 +54,67 @@
       opacity: 0.7;
     }
 
-    /* SCROLL SECTIONS */
-    section {
-      padding: 120px 20px;
+    /* MAIN SECTION */
+    .main {
+      padding: 80px 20px 40px;
       max-width: 900px;
       margin: auto;
       text-align: center;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s ease;
     }
 
-    section.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .story {
-      font-size: 16px;
+    .description {
+      font-size: 15px;
       line-height: 1.8;
       opacity: 0.85;
     }
 
-    .highlight {
-      background: linear-gradient(90deg, #00fff2, #ff00c8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 600;
-    }
-
-    /* BOWS */
+    /* NFT DISPLAY (NO BOX, BLENDED) */
     .bows {
-      position: relative;
-      height: 500px;
+      margin-top: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
     .bows img {
-      position: absolute;
-      width: 220px;
-      transition: 0.6s;
-      filter: blur(1px) brightness(0.9);
-    }
-
-    .bows img:nth-child(1) {
-      left: 10%;
-      top: 30%;
+      width: 200px;
+      transition: 0.4s ease;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
     }
 
     .bows img:nth-child(2) {
-      left: 40%;
-      top: 0%;
       transform: scale(1.2);
     }
 
-    .bows img:nth-child(3) {
-      right: 10%;
-      top: 35%;
-    }
-
     .bows img:hover {
-      transform: scale(1.1);
-      filter: blur(0) brightness(1.2);
+      transform: scale(1.25);
+      filter: drop-shadow(0 0 40px rgba(255,255,255,0.6));
     }
 
     /* FOUNDER */
     .founder {
+      margin-top: 100px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.15);
       font-family: monospace;
       text-align: left;
-      border-left: 2px solid rgba(255,255,255,0.2);
-      padding-left: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .founder h2 {
       font-family: 'Orbitron';
+      letter-spacing: 2px;
     }
 
     .founder p {
       opacity: 0.75;
       font-size: 14px;
-      line-height: 1.6;
-    }
-
-    /* BUTTON */
-    .cta {
-      margin-top: 40px;
-      padding: 14px 30px;
-      border: 1px solid white;
-      background: transparent;
-      color: white;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .cta:hover {
-      background: white;
-      color: black;
+      line-height: 1.7;
     }
 
   </style>
@@ -186,62 +130,42 @@
 
     <div class="overlay">
       <div class="title">METABOWS</div>
-      <div class="tagline">IDENTITY IS A CONSTRUCT</div>
+      <div class="tagline">OWN YOUR OTHER SELF</div>
     </div>
   </div>
 
-  <!-- STORY -->
-  <section>
-    <p class="story">
-      <span class="highlight">2,222 IDENTITIES.</span><br><br>
-      engineered at the edge of perception.<br>
-      not designed to be followed — designed to be assumed.<br><br>
-      no repetition. no narrative.<br>
-      only presence.
-    </p>
-  </section>
+  <!-- MAIN CONTENT -->
+  <div class="main">
 
-  <!-- BOWS -->
-  <section>
+    <!-- DESCRIPTION -->
+    <div class="description">
+      Meta-Bows is a collection of 2222 unique digital identities—each one a wearable expression of who you are or who you choose to become. 
+      Born from a chaotic interdimensional mutation, these beings crossed into the meta-realm, evolving into distinct forms with their own traits and personalities. 
+      Inspired by alternate realities, every Meta-Bow represents a version of you that exists somewhere else—waiting to be claimed, owned, and worn.
+    </div>
+
+    <!-- NFT DISPLAY -->
     <div class="bows">
       <img src="bow1.png">
       <img src="bow2.png">
       <img src="bow3.png">
     </div>
-  </section>
 
-  <!-- FOUNDER -->
-  <section class="founder">
-    <h2>FLUX</h2>
-    <p>
-      // identity: abstract<br>
-      // state: continuous<br><br>
+    <!-- FOUNDER -->
+    <div class="founder">
+      <h2>FLUX</h2>
+      <p>
+        // identity: unknown<br>
+        // origin: fractured<br><br>
 
-      structure without form.<br>
-      authorship without exposure.<br><br>
+        MetaBows was not designed for mass attention.<br>
+        It was built for those who recognize presence beyond form.<br><br>
 
-      metabows is not announced.<br>
-      it appears.
-    </p>
+        Flux operates outside visibility — not to hide, but to remain undefined.
+      </p>
+    </div>
 
-    <button class="cta" onclick="window.open('https://opensea.io/', '_blank')">
-      VIEW ON OPENSEA
-    </button>
-  </section>
-
-  <script>
-    // SCROLL ANIMATION
-    const sections = document.querySelectorAll("section");
-
-    window.addEventListener("scroll", () => {
-      sections.forEach(sec => {
-        const top = sec.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
-          sec.classList.add("show");
-        }
-      });
-    });
-  </script>
+  </div>
 
 </body>
 </html>
