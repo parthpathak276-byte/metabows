@@ -1,223 +1,174 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
   <title>MetaBows</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-
     body {
-
       margin: 0;
-
       background: black;
-
       color: white;
-
-      font-family: 'Space Grotesk', sans-serif;
-
       text-align: center;
-
+      font-family: 'Playfair Display', serif;
+      overflow-x: hidden;
     }
 
+    /* VIDEO FIX */
     .hero {
-
-      height: 100vh;
-
       position: relative;
-
+      height: 100vh;
+      width: 100%;
       overflow: hidden;
-
     }
 
-    video {
-
+    .hero video {
       position: absolute;
-
-      width: 100%;
-
-      height: 100%;
-
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
       object-fit: cover;
-
     }
 
     .overlay {
-
       position: absolute;
-
       width: 100%;
-
       height: 100%;
-
       background: linear-gradient(to bottom, rgba(0,0,0,0.5), black);
-
       display: flex;
-
       justify-content: center;
-
       align-items: center;
-
       flex-direction: column;
-
     }
 
     .title {
-
       font-family: Orbitron;
-
       font-size: 80px;
-
       background: linear-gradient(90deg, #00fff2, #ff00c8);
-
       -webkit-background-clip: text;
-
       -webkit-text-fill-color: transparent;
-
     }
 
     .main {
-
-      padding: 60px 20px;
-
-      max-width: 1000px;
-
+      padding: 80px 20px;
+      max-width: 900px;
       margin: auto;
-
     }
 
+    /* PREMIUM DESCRIPTION */
+    .description {
+      font-size: 17px;
+      line-height: 1.9;
+      opacity: 0.9;
+      letter-spacing: 0.4px;
+    }
+
+    /* BUTTONS */
     .cta {
-
-      margin-top: 40px;
-
-      padding: 12px 30px;
-
-      border: 1px solid white;
-
-      background: transparent;
-
-      color: white;
-
+      margin-top: 50px;
+      padding: 14px 36px;
+      border: none;
+      background: linear-gradient(90deg, #00fff2, #ff00c8);
+      color: black;
+      font-weight: 600;
+      letter-spacing: 2px;
       cursor: pointer;
-
+      box-shadow: 0 0 20px rgba(255,0,200,0.4);
+      transition: 0.3s;
     }
 
+    .cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(0,255,255,0.8);
+    }
+
+    /* QUIZ */
     #quiz {
-
       display: none;
-
-      margin-top: 30px;
-
+      margin-top: 40px;
     }
 
     select {
-
       padding: 10px;
-
       margin: 10px;
-
       background: black;
-
       color: white;
-
       border: 1px solid white;
-
     }
 
+    /* NFT GRID */
     .grid {
-
       display: grid;
-
-      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-
-      gap: 8px;
-
-      margin-top: 40px;
-
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 50px;
     }
 
     .grid img {
-
       width: 100%;
-
-      transition: 0.2s;
-
+      transition: 0.3s;
     }
 
     .grid img:hover {
-
       transform: scale(1.05);
-
     }
 
   </style>
-
 </head>
 
 <body>
 
+<!-- BACKGROUND MUSIC -->
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HERO -->
 <div class="hero">
-
   <video autoplay muted loop playsinline>
-
     <source src="bg.mp4" type="video/mp4">
-
   </video>
 
   <div class="overlay">
-
     <div class="title">METABOWS</div>
-
   </div>
-
 </div>
 
+<!-- MAIN -->
 <div class="main">
 
-<p>
-
-Meta-Bows is a collection of 2222 unique digital identities—each one a wearable expression of who you are or who you choose to become.
-
-</p>
+<div class="description">
+Meta-Bows is a collection of 2222 unique digital identities—each one a wearable expression of who you are or who you choose to become. 
+Born from a chaotic interdimensional mutation, these beings crossed into the meta-realm, evolving into distinct forms with their own traits and personalities. 
+Inspired by alternate realities, every Meta-Bow represents a version of you that exists somewhere else—waiting to be claimed, owned, and worn.
+</div>
 
 <button onclick="startQuiz()" class="cta">FIND YOUR IDENTITY</button>
 
 <div id="quiz">
 
 <p>Choose your vibe:</p>
-
 <select id="vibe">
-
   <option>Chill</option>
-
   <option>Loud</option>
-
   <option>Clean</option>
-
   <option>Weird</option>
-
 </select>
 
 <p>Choose your energy:</p>
-
 <select id="energy">
-
   <option>Smooth</option>
-
   <option>Hype</option>
-
   <option>Dreamy</option>
-
   <option>Wild</option>
-
 </select>
 
 <br>
-
 <button onclick="showNFTs()" class="cta">Reveal</button>
 
 </div>
@@ -227,52 +178,36 @@ Meta-Bows is a collection of 2222 unique digital identities—each one a wearabl
 </div>
 
 <script>
-
 const CID = "QmcZCK1QCt677ogSN28kChaJ4dt1jPQJvejbL1MrcRTXz6";
 
 function startQuiz() {
-
   document.getElementById("quiz").style.display = "block";
-
 }
 
 function getRange(vibe, energy) {
-
   let vibes = ["Chill","Loud","Clean","Weird"];
-
   let energies = ["Smooth","Hype","Dreamy","Wild"];
 
-  let vibeIndex = vibes.indexOf(vibe);
-
-  let energyIndex = energies.indexOf(energy);
-
-  let comboIndex = vibeIndex * 4 + energyIndex;
+  let comboIndex = vibes.indexOf(vibe) * 4 + energies.indexOf(energy);
 
   let rangeSize = Math.floor(2222 / 16);
 
   let start = comboIndex * rangeSize;
-
   let end = start + rangeSize;
 
   return {start, end};
-
 }
 
 function showNFTs() {
-
   let vibe = document.getElementById("vibe").value;
-
   let energy = document.getElementById("energy").value;
 
   let {start, end} = getRange(vibe, energy);
 
   let container = document.getElementById("result");
-
   container.innerHTML = "";
 
-  let count = 130;
-
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < 130; i++) {
 
     let id = Math.floor(Math.random() * (end - start)) + start;
 
@@ -281,13 +216,9 @@ function showNFTs() {
     img.src = `https://ipfs.io/ipfs/${CID}/${id}.png`;
 
     container.appendChild(img);
-
   }
-
 }
-
 </script>
 
 </body>
-
 </html>
