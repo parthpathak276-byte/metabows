@@ -14,10 +14,23 @@
       overflow-x: hidden;
     }
 
+    /* GRAIN OVERLAY (HIGH-END FEEL) */
+    body::after {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('https://grainy-gradients.vercel.app/noise.svg');
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 10;
+    }
+
     /* HERO */
     .hero {
       height: 100vh;
       position: relative;
+      overflow: hidden;
     }
 
     .hero video {
@@ -25,6 +38,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transform: scale(1.1);
     }
 
     .overlay {
@@ -38,53 +52,43 @@
       flex-direction: column;
     }
 
-    /* GLITCH TITLE */
+    /* TITLE */
     .title {
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Orbitron';
       font-size: 80px;
       letter-spacing: 6px;
-      position: relative;
-      color: white;
+      background: linear-gradient(90deg, #00fff2, #ff00c8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s ease-in-out infinite alternate;
     }
 
-    .title::before,
-    .title::after {
-      content: "METABOWS";
-      position: absolute;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .title::before {
-      color: #00fff2;
-      animation: glitch 2s infinite;
-    }
-
-    .title::after {
-      color: #ff00c8;
-      animation: glitch 2s infinite reverse;
-    }
-
-    @keyframes glitch {
-      0% { clip-path: inset(0 0 90% 0); }
-      50% { clip-path: inset(10% 0 40% 0); }
-      100% { clip-path: inset(80% 0 5% 0); }
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 10px #00fff2); }
+      to { filter: drop-shadow(0 0 25px #ff00c8); }
     }
 
     .tagline {
-      margin-top: 15px;
-      font-size: 14px;
+      margin-top: 10px;
       letter-spacing: 3px;
+      font-size: 13px;
       opacity: 0.7;
     }
 
-    /* SECTION */
+    /* SCROLL SECTIONS */
     section {
       padding: 120px 20px;
       max-width: 900px;
       margin: auto;
       text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .story {
@@ -100,24 +104,22 @@
       font-weight: 600;
     }
 
-    /* BOWS — PREMIUM LAYOUT */
+    /* BOWS */
     .bows {
       position: relative;
       height: 500px;
-      margin-top: 80px;
     }
 
     .bows img {
       position: absolute;
       width: 220px;
-      transition: 0.5s;
-      filter: drop-shadow(0 0 20px rgba(255,255,255,0.2));
+      transition: 0.6s;
+      filter: blur(1px) brightness(0.9);
     }
 
     .bows img:nth-child(1) {
       left: 10%;
-      top: 20%;
-      transform: rotate(-8deg);
+      top: 30%;
     }
 
     .bows img:nth-child(2) {
@@ -128,36 +130,47 @@
 
     .bows img:nth-child(3) {
       right: 10%;
-      top: 25%;
-      transform: rotate(8deg);
+      top: 35%;
     }
 
     .bows img:hover {
       transform: scale(1.1);
-      filter: drop-shadow(0 0 40px rgba(255,255,255,0.6));
+      filter: blur(0) brightness(1.2);
     }
 
     /* FOUNDER */
     .founder {
-      margin-top: 100px;
       font-family: monospace;
       text-align: left;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      border-left: 2px solid rgba(255,255,255,0.3);
+      border-left: 2px solid rgba(255,255,255,0.2);
       padding-left: 20px;
     }
 
     .founder h2 {
       font-family: 'Orbitron';
-      letter-spacing: 2px;
     }
 
     .founder p {
       opacity: 0.75;
       font-size: 14px;
       line-height: 1.6;
+    }
+
+    /* BUTTON */
+    .cta {
+      margin-top: 40px;
+      padding: 14px 30px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .cta:hover {
+      background: white;
+      color: black;
     }
 
   </style>
@@ -181,10 +194,10 @@
   <section>
     <p class="story">
       <span class="highlight">2,222 IDENTITIES.</span><br><br>
-      MetaBows exists at the edge of form and abstraction.<br>
-      Each entity is a distortion of identity — precise, deliberate, irreversible.<br><br>
-      No roadmap. No noise.<br>
-      Just presence.
+      engineered at the edge of perception.<br>
+      not designed to be followed — designed to be assumed.<br><br>
+      no repetition. no narrative.<br>
+      only presence.
     </p>
   </section>
 
@@ -201,16 +214,34 @@
   <section class="founder">
     <h2>FLUX</h2>
     <p>
-      // identity: unknown<br>
-      // origin: fragmented<br><br>
+      // identity: abstract<br>
+      // state: continuous<br><br>
 
-      built outside convention.<br>
-      no attachment to form.<br><br>
+      structure without form.<br>
+      authorship without exposure.<br><br>
 
-      metabows is not released.<br>
-      it emerges.
+      metabows is not announced.<br>
+      it appears.
     </p>
+
+    <button class="cta" onclick="window.open('https://opensea.io/', '_blank')">
+      VIEW ON OPENSEA
+    </button>
   </section>
+
+  <script>
+    // SCROLL ANIMATION
+    const sections = document.querySelectorAll("section");
+
+    window.addEventListener("scroll", () => {
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+          sec.classList.add("show");
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
