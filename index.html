@@ -1,235 +1,389 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
-  <title>MetaBows</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<title>METABOWS</title>
 
-  <style>
-    body {
-      margin: 0;
-      background: black;
-      color: white;
-      text-align: center;
-      font-family: 'Playfair Display', serif;
-      overflow-x: hidden;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
 
-    /* HERO */
-    .hero {
-      position: relative;
-      height: 100vh;
-      width: 100%;
-      overflow: hidden;
-    }
+<style>
 
-    .hero video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      min-width: 100%;
-      min-height: 100%;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
-    }
+* {
 
-    .overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.5), black);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
+  margin: 0;
 
-    .title {
-      font-family: Orbitron;
-      font-size: 80px;
-      background: linear-gradient(90deg, #00fff2, #ff00c8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  padding: 0;
 
-    /* MAIN */
-    .main {
-      padding: 80px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+  box-sizing: border-box;
 
-    .description {
-      font-size: 17px;
-      line-height: 1.9;
-      opacity: 0.9;
-      letter-spacing: 0.4px;
-    }
+}
 
-    /* BUTTON */
-    .cta {
-      margin-top: 50px;
-      padding: 14px 36px;
-      border: none;
-      background: linear-gradient(90deg, #00fff2, #ff00c8);
-      color: black;
-      font-weight: 600;
-      letter-spacing: 2px;
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(255,0,200,0.4);
-      transition: 0.3s;
-    }
+body {
 
-    .cta:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 40px rgba(0,255,255,0.8);
-    }
+  background: black;
 
-    /* QUIZ */
-    #quiz {
-      display: none;
-      margin-top: 40px;
-    }
+  color: white;
 
-    select {
-      padding: 10px;
-      margin: 10px;
-      background: black;
-      color: white;
-      border: 1px solid white;
-    }
+  font-family: 'Space Grotesk', sans-serif;
 
-    /* NFT GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-top: 50px;
-    }
+  overflow-x: hidden;
 
-    .grid img {
-      width: 100%;
-      transition: 0.3s;
-    }
+}
 
-    .grid img:hover {
-      transform: scale(1.05);
-    }
+/* VIDEO */
 
-  </style>
+video {
+
+  position: fixed;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  z-index: -2;
+
+}
+
+.overlay {
+
+  position: fixed;
+
+  width: 100%;
+
+  height: 100%;
+
+  background: rgba(0,0,0,0.7);
+
+  z-index: -1;
+
+}
+
+/* GENERAL */
+
+section {
+
+  padding: 80px 20px;
+
+  text-align: center;
+
+}
+
+h1 {
+
+  font-family: 'Orbitron';
+
+  font-size: 64px;
+
+  letter-spacing: 6px;
+
+}
+
+p {
+
+  font-size: 18px;
+
+  max-width: 700px;
+
+  margin: auto;
+
+  line-height: 1.7;
+
+  opacity: 0.9;
+
+}
+
+/* HERO */
+
+.hero {
+
+  height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+}
+
+/* QUIZ */
+
+.quiz button {
+
+  margin: 10px;
+
+  padding: 12px 20px;
+
+  background: rgba(255,255,255,0.1);
+
+  border: 1px solid rgba(255,255,255,0.3);
+
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  border-radius: 8px;
+
+}
+
+.quiz button:hover {
+
+  background: white;
+
+  color: black;
+
+  transform: scale(1.05);
+
+}
+
+/* NFT GRID */
+
+.grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+
+  gap: 25px;
+
+  margin-top: 40px;
+
+}
+
+.grid img {
+
+  width: 100%;
+
+  border-radius: 12px;
+
+  transition: 0.3s;
+
+}
+
+.grid img:hover {
+
+  transform: scale(1.05);
+
+  box-shadow: 0 0 25px rgba(255,255,255,0.3);
+
+}
+
+/* ANIMATION */
+
+.fade {
+
+  opacity: 0;
+
+  transform: translateY(40px);
+
+  transition: 1s;
+
+}
+
+.fade.show {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
+
+/* FOUNDER */
+
+.founder {
+
+  font-style: italic;
+
+  opacity: 0.8;
+
+  margin-top: 20px;
+
+}
+
+/* MOBILE FIX */
+
+@media(max-width:768px){
+
+h1 { font-size: 42px; }
+
+p { font-size: 16px; }
+
+.quiz button {
+
+  width: 80%;
+
+  font-size: 16px;
+
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-<!-- AUDIO (no autoplay, triggered by interaction) -->
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<video autoplay muted loop playsinline>
+
+<source src="bg.mp4" type="video/mp4">
+
+</video>
+
+<div class="overlay"></div>
 
 <!-- HERO -->
-<div class="hero">
-  <video autoplay muted loop playsinline>
-    <source src="bg.mp4" type="video/mp4">
-  </video>
 
-  <div class="overlay">
-    <div class="title">METABOWS</div>
-  </div>
-</div>
+<section class="hero">
 
-<!-- MAIN -->
-<div class="main">
+<h1>METABOWS</h1>
 
-<div class="description">
-Meta-Bows is a collection of 2222 unique digital identities—each one a wearable expression of who you are or who you choose to become. 
-Born from a chaotic interdimensional mutation, these beings crossed into the meta-realm, evolving into distinct forms with their own traits and personalities. 
-Inspired by alternate realities, every Meta-Bow represents a version of you that exists somewhere else—waiting to be claimed, owned, and worn.
-</div>
+<p>
 
-<button onclick="startQuiz()" class="cta">FIND YOUR IDENTITY</button>
+2,222 identities. No duplicates.<br><br>
 
-<div id="quiz">
+You don’t pick randomly.<br>
 
-<p>Choose your vibe:</p>
-<select id="vibe">
-  <option>Chill</option>
-  <option>Loud</option>
-  <option>Clean</option>
-  <option>Weird</option>
-</select>
+You discover what represents you.
 
-<p>Choose your energy:</p>
-<select id="energy">
-  <option>Smooth</option>
-  <option>Hype</option>
-  <option>Dreamy</option>
-  <option>Wild</option>
-</select>
+</p>
 
-<br>
-<button onclick="showNFTs()" class="cta">Reveal</button>
+</section>
 
-</div>
+<!-- STORY -->
 
-<div id="result" class="grid"></div>
+<section class="fade">
 
-</div>
+<p>
+
+MetaBows is a digital identity system.  
+
+Each bow represents a distinct personality, energy, and mindset.  
+
+You don’t buy one — you align with one.
+
+</p>
+
+</section>
+
+<!-- QUIZ -->
+
+<section class="quiz fade">
+
+<h2>Choose Your Identity</h2>
+
+<p>Pick your vibe</p>
+
+<button onclick="selectVibe('chill')">Chill</button>
+
+<button onclick="selectVibe('bold')">Bold</button>
+
+<button onclick="selectVibe('clean')">Clean</button>
+
+<button onclick="selectVibe('chaotic')">Chaotic</button>
+
+<p>Pick your energy</p>
+
+<button onclick="selectEnergy('light')">Light</button>
+
+<button onclick="selectEnergy('dark')">Dark</button>
+
+<button onclick="selectEnergy('wealth')">Wealth</button>
+
+<button onclick="selectEnergy('creative')">Creative</button>
+
+<div class="grid" id="results"></div>
+
+</section>
+
+<!-- FOUNDER -->
+
+<section class="fade">
+
+<h2>FOUNDER — FLUX</h2>
+
+<p class="founder">
+
+No face. No noise.<br><br>
+
+Flux operates where identity meets ownership.<br>
+
+No interviews. No exposure.<br><br>
+
+Only execution.
+
+</p>
+
+</section>
 
 <script>
-const CID = "QmcZCK1QCt677ogSN28kChaJ4dt1jPQJvejbL1MrcRTXz6";
 
-/* QUIZ */
-function startQuiz() {
-  document.getElementById("quiz").style.display = "block";
+let vibe, energy;
+
+function selectVibe(v){
+
+  vibe = v;
+
+  showNFTs();
+
 }
 
-function getRange(vibe, energy) {
-  let vibes = ["Chill","Loud","Clean","Weird"];
-  let energies = ["Smooth","Hype","Dreamy","Wild"];
+function selectEnergy(e){
 
-  let comboIndex = vibes.indexOf(vibe) * 4 + energies.indexOf(energy);
+  energy = e;
 
-  let rangeSize = Math.floor(2222 / 16);
+  showNFTs();
 
-  let start = comboIndex * rangeSize;
-  let end = start + rangeSize;
-
-  return {start, end};
 }
 
-function showNFTs() {
-  let vibe = document.getElementById("vibe").value;
-  let energy = document.getElementById("energy").value;
+function showNFTs(){
 
-  let {start, end} = getRange(vibe, energy);
+if(!vibe || !energy) return;
 
-  let container = document.getElementById("result");
-  container.innerHTML = "";
+const container = document.getElementById("results");
 
-  for (let i = 0; i < 130; i++) {
+container.innerHTML = "";
 
-    let id = Math.floor(Math.random() * (end - start)) + start;
+for(let i=1;i<=12;i++){
 
-    let img = document.createElement("img");
+  let img = document.createElement("img");
 
-    img.src = `https://ipfs.io/ipfs/${CID}/${id}.png`;
+  img.src = "nfts/"+i+".png";
 
-    container.appendChild(img);
-  }
+  container.appendChild(img);
+
 }
 
-/* AUDIO FIX (NO BUTTON) */
-const music = document.getElementById("bgMusic");
-
-function enableAudio() {
-  music.play().catch(() => {});
-  document.removeEventListener("click", enableAudio);
-  document.removeEventListener("scroll", enableAudio);
 }
 
-document.addEventListener("click", enableAudio);
-document.addEventListener("scroll", enableAudio);
+/* SCROLL ANIMATION */
+
+const faders = document.querySelectorAll(".fade");
+
+window.addEventListener("scroll", () => {
+
+  faders.forEach(el=>{
+
+    const top = el.getBoundingClientRect().top;
+
+    if(top < window.innerHeight - 50){
+
+      el.classList.add("show");
+
+    }
+
+  });
+
+});
+
 </script>
 
 </body>
+
 </html>
