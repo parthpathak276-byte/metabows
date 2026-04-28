@@ -206,21 +206,21 @@ p {
 
 }
 
-/* MOBILE FIX */
+/* MOBILE */
 
 @media(max-width:768px){
 
-h1 { font-size: 42px; }
+  h1 { font-size: 42px; }
 
-p { font-size: 16px; }
+  p { font-size: 16px; }
 
-.quiz button {
+  .quiz button {
 
-  width: 80%;
+    width: 80%;
 
-  font-size: 16px;
+    font-size: 16px;
 
-}
+  }
 
 }
 
@@ -230,9 +230,11 @@ p { font-size: 16px; }
 
 <body>
 
+<!-- VIDEO -->
+
 <video autoplay muted loop playsinline>
 
-<source src="bg.mp4" type="video/mp4">
+  <source src="bg.mp4" type="video/mp4">
 
 </video>
 
@@ -242,17 +244,17 @@ p { font-size: 16px; }
 
 <section class="hero">
 
-<h1>METABOWS</h1>
+  <h1>METABOWS</h1>
 
-<p>
+  <p>
 
-2,222 identities. No duplicates.<br><br>
+    2,222 identities. No duplicates.<br><br>
 
-You don’t pick randomly.<br>
+    You don’t pick randomly.<br>
 
-You discover what represents you.
+    You discover what represents you.
 
-</p>
+  </p>
 
 </section>
 
@@ -260,15 +262,15 @@ You discover what represents you.
 
 <section class="fade">
 
-<p>
+  <p>
 
-MetaBows is a digital identity system.  
+    MetaBows is a digital identity system.  
 
-Each bow represents a distinct personality, energy, and mindset.  
+    Each bow represents a distinct personality, energy, and mindset.  
 
-You don’t buy one — you align with one.
+    You don’t buy one — you align with one.
 
-</p>
+  </p>
 
 </section>
 
@@ -306,31 +308,35 @@ You don’t buy one — you align with one.
 
 <section class="fade">
 
-<h2>FOUNDER — FLUX</h2>
+  <h2>FOUNDER — FLUX</h2>
 
-<p class="founder">
+  <p class="founder">
 
-No face. No noise.<br><br>
+    No face. No noise.<br><br>
 
-Flux operates where identity meets ownership.<br>
+    Flux operates where identity meets ownership.<br>
 
-No interviews. No exposure.<br><br>
+    No interviews. No exposure.<br><br>
 
-Only execution.
+    Only execution.
 
-</p>
+  </p>
 
 </section>
 
 <script>
 
-let vibe, energy;
+const CID = "QmcZCK1QCt677ogSN28kChaJ4dt1jPQJvejbL1MrcRTXz6";
+
+let vibe = null;
+
+let energy = null;
 
 function selectVibe(v){
 
   vibe = v;
 
-  showNFTs();
+  checkAndShow();
 
 }
 
@@ -338,27 +344,57 @@ function selectEnergy(e){
 
   energy = e;
 
-  showNFTs();
+  checkAndShow();
+
+}
+
+function checkAndShow(){
+
+  if(vibe && energy){
+
+    showNFTs();
+
+  }
+
+}
+
+function getRange(vibe, energy){
+
+  const vibes = ["chill","bold","clean","chaotic"];
+
+  const energies = ["light","dark","wealth","creative"];
+
+  let comboIndex = vibes.indexOf(vibe) * 4 + energies.indexOf(energy);
+
+  let rangeSize = Math.floor(2222 / 16);
+
+  let start = comboIndex * rangeSize;
+
+  let end = start + rangeSize;
+
+  return {start, end};
 
 }
 
 function showNFTs(){
 
-if(!vibe || !energy) return;
+  const container = document.getElementById("results");
 
-const container = document.getElementById("results");
+  container.innerHTML = "";
 
-container.innerHTML = "";
+  const {start, end} = getRange(vibe, energy);
 
-for(let i=1;i<=12;i++){
+  for(let i=0;i<18;i++){
 
-  let img = document.createElement("img");
+    let id = Math.floor(Math.random() * (end - start)) + start;
 
-  img.src = "nfts/"+i+".png";
+    let img = document.createElement("img");
 
-  container.appendChild(img);
+    img.src = `https://ipfs.io/ipfs/${CID}/${id}.png`;
 
-}
+    container.appendChild(img);
+
+  }
 
 }
 
