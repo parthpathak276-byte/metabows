@@ -137,9 +137,7 @@ p {
 <section class="section hero">
 <div class="container">
   <h1>METABOWS</h1>
-
   <p>SIGNAL > NOISE</p>
-
   <div class="micro">NOT RANDOM. RECOGNIZED.</div>
 </div>
 </section>
@@ -151,24 +149,11 @@ p {
 <p>
 MetaBows is a system of digital identity expressed through 2,222 distinct forms.<br><br>
 
-Each bow represents a unique balance of personality, energy, and presence — not as variation, but as identity.<br><br>
-
-In a space where repetition is normalized and distinction is diluted, MetaBows exists to restore clarity.<br><br>
-
-Every piece stands on its own.<br><br>
-
-Not everything is meant to resonate with everyone.<br><br>
-
-Some identities are quiet.  
-Some are loud.  
-Some are controlled.  
-Some are unpredictable.<br><br>
+Each bow represents a unique balance of personality, energy, and presence.<br><br>
 
 Each one reflects a different way of existing.<br><br>
 
-When that alignment happens, it doesn’t feel random.<br><br>
-
-It feels obvious.
+When alignment happens, it feels obvious.
 </p>
 
 <div class="micro">NOT FOR EVERYONE</div>
@@ -200,16 +185,9 @@ It feels obvious.
 <!-- FOUNDER -->
 <section class="section">
 <div class="container box">
-
 <h2>FLUX</h2>
-
-<p>
-Present in the space longer than most realize.<br>
-What’s visible is only a fraction.
-</p>
-
+<p>Present in the space longer than most realize.</p>
 <div class="micro">SYSTEM, NOT COLLECTION</div>
-
 </div>
 </section>
 
@@ -222,7 +200,7 @@ What’s visible is only a fraction.
 
 <script>
 
-const CID = "QmcZCK1QCt677ogSN28kChaJ4dt1jPQJvejbL1MrcRTXz6";
+const IMAGE_CID = "QmW8LR1hGUejSutniDPwiHXtSRxDtkBe3cBQvmQjUPxS4L";
 
 const mappings = {
   "ghost": [26, 28],
@@ -249,7 +227,7 @@ function selectType(type){
 
       let img = document.createElement("img");
 
-      img.src = "https://via.placeholder.com/300";
+      img.src = `https://ipfs.io/ipfs/${IMAGE_CID}/${id}.png`;
 
       container.appendChild(img);
 
