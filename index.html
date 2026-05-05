@@ -56,7 +56,7 @@ video {
   letter-spacing:2px;
 }
 
-/* MICRO */
+/* MICRO LINE */
 .micro {
   margin-top:20px;
   font-size:12px;
@@ -67,8 +67,8 @@ video {
 /* BOX */
 .box {
   border:1px solid rgba(255,255,255,0.15);
-  padding:50px;
-  border-radius:14px;
+  padding:40px;
+  border-radius:12px;
   background:rgba(255,255,255,0.03);
 }
 
@@ -78,30 +78,35 @@ p {
   font-size:18px;
 }
 
-/* QUIZ OPTION CARDS */
-.options {
+/* ========================= */
+/* QUIZ FIXED (IMPORTANT) */
+/* ========================= */
+
+.quiz-grid {
   margin-top:40px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:20px;
+  gap:16px;
 }
 
-.option {
-  padding:20px;
-  border:1px solid rgba(255,255,255,0.2);
+.quiz-card {
+  padding:18px;
+  border:1px solid rgba(255,255,255,0.25);
   border-radius:12px;
+  background:rgba(255,255,255,0.04);
   cursor:pointer;
   transition:0.3s;
-  background:rgba(255,255,255,0.02);
+  font-size:15px;
+  letter-spacing:1px;
 }
 
-.option:hover {
+.quiz-card:hover {
   background:white;
   color:black;
   transform:scale(1.05);
 }
 
-/* GRID */
+/* GRID RESULTS */
 .grid {
   margin-top:40px;
   display:grid;
@@ -147,61 +152,73 @@ p {
 </div>
 </section>
 
-<!-- CORE -->
+<!-- CORE PHILOSOPHY (UNCHANGED TEXT) -->
 <section class="section">
 <div class="container box">
 
 <p>
 MetaBows is a system of digital identity expressed through 2,222 distinct forms.<br><br>
 
-Each bow represents a different structure of presence, pattern, and perception.<br><br>
+Each bow represents a unique balance of personality, energy, and presence — not as variation, but as identity.<br><br>
 
-Not designed to appeal — but to align.<br><br>
+In a space where repetition is normalized and distinction is diluted, MetaBows exists to restore clarity.<br><br>
 
-When it matches, it doesn’t feel chosen.<br><br>
+Every piece stands on its own.<br><br>
 
-It feels inevitable.
+Not everything is meant to resonate with everyone.<br><br>
+
+Some identities are quiet.  
+Some are loud.  
+Some are controlled.  
+Some are unpredictable.<br><br>
+
+Each one reflects a different way of existing.<br><br>
+
+When that alignment happens, it doesn’t feel random.<br><br>
+
+It feels obvious.
 </p>
-
 <div class="micro">NOT FOR EVERYONE</div>
 
 </div>
 </section>
 
-<!-- QUIZ (REBUILT EXPERIENCE) -->
+<!-- QUIZ (FIXED) -->
 <section class="section">
 <div class="container box">
 
-<h2>IDENTITY SIGNAL</h2>
-<p class="micro">select what resonates — not what looks right</p>
+<h2>CHOOSE WHAT FITS</h2>
+<p class="micro">IF IT FITS, YOU KNOW</p>
 
-<div class="options">
-  <div class="option" onclick="selectType('ghost')">Ghost in the System</div>
-  <div class="option" onclick="selectType('breaker')">System Breaker</div>
-  <div class="option" onclick="selectType('clean')">Clean Operator</div>
-  <div class="option" onclick="selectType('genius')">Unstable Genius</div>
+<div class="quiz-grid">
+  <div class="quiz-card" onclick="selectType('ghost')">Ghost in the System</div>
+  <div class="quiz-card" onclick="selectType('breaker')">System Breaker</div>
+  <div class="quiz-card" onclick="selectType('clean')">Clean Operator</div>
+  <div class="quiz-card" onclick="selectType('genius')">Unstable Genius</div>
 </div>
 
-<div id="loading">Mapping signal...</div>
+<div id="loading">System loading your identity...</div>
 
 <div class="grid" id="results"></div>
 
 </div>
 </section>
 
-<!-- SYSTEM LAYER (was “founder”) -->
+<!-- FLUX (FOUNDATION REVEAL - SUBTLE) -->
 <section class="section">
 <div class="container box">
 
 <p>
-There was never a single point of creation.<br><br>
+What appears as structure was not designed in isolation.<br><br>
 
-Only a gradual emergence of structure from repetition.<br><br>
+It evolved from a persistent signal — refined over time until it stabilized into form.<br><br>
 
-What exists now is the result of refinement, not origin.
+There is no traditional origin point.<br><br>
+
+Only continuity.
 </p>
 
-<div class="micro">FLUX</div>
+<div class="micro">FLUX // SYSTEM ORIGIN</div>
 
 </div>
 </section>
