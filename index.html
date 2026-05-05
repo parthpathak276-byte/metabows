@@ -79,18 +79,23 @@ p {
 }
 
 /* ========================= */
-/* QUIZ FIXED (IMPORTANT) */
+/* FIXED QUIZ (STRICT 2x2) */
 /* ========================= */
+
+.quiz-title {
+  margin-bottom:10px;
+}
 
 .quiz-grid {
   margin-top:40px;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns:repeat(2, 1fr); /* FORCE 2 columns */
+  grid-template-rows:repeat(2, auto);   /* FORCE 2 rows */
   gap:16px;
 }
 
 .quiz-card {
-  padding:18px;
+  padding:20px;
   border:1px solid rgba(255,255,255,0.25);
   border-radius:12px;
   background:rgba(255,255,255,0.04);
@@ -129,6 +134,12 @@ p {
 /* MOBILE */
 @media(max-width:768px){
   .hero h1 { font-size:40px; }
+
+  /* keep 2x2 even on mobile but smaller spacing */
+  .quiz-grid {
+    gap:10px;
+  }
+
   p { font-size:16px; }
 }
 
@@ -152,7 +163,7 @@ p {
 </div>
 </section>
 
-<!-- CORE PHILOSOPHY (UNCHANGED TEXT) -->
+<!-- CORE PHILOSOPHY (UNCHANGED) -->
 <section class="section">
 <div class="container box">
 
@@ -178,17 +189,18 @@ When that alignment happens, it doesn’t feel random.<br><br>
 
 It feels obvious.
 </p>
+
 <div class="micro">NOT FOR EVERYONE</div>
 
 </div>
 </section>
 
-<!-- QUIZ (FIXED) -->
+<!-- QUIZ (FIXED TEXT + LAYOUT) -->
 <section class="section">
 <div class="container box">
 
-<h2>CHOOSE WHAT FITS</h2>
-<p class="micro">IF IT FITS, YOU KNOW</p>
+<h2>IDENTITY SIGNAL</h2>
+<p class="micro">select what resonates — not what looks right</p>
 
 <div class="quiz-grid">
   <div class="quiz-card" onclick="selectType('ghost')">Ghost in the System</div>
@@ -204,7 +216,7 @@ It feels obvious.
 </div>
 </section>
 
-<!-- FLUX (FOUNDATION REVEAL - SUBTLE) -->
+<!-- FLUX (UNCHANGED) -->
 <section class="section">
 <div class="container box">
 
